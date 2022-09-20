@@ -1,25 +1,19 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Button, View, Platform} from 'react-native';
 import React from 'react';
+import CustomButton from './components/CustomButton';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Text style={styles.text}>App</Text>
-      </View>
+      <CustomButton onPress={() => console.log()}>Attendance</CustomButton>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
   },
 });
 
