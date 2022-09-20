@@ -1,17 +1,12 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Button,
-  View,
-  Platform,
-  Text,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import CustomButton from './components/CustomButton';
 import pushAttendance from './functions/dateFunction';
+import Geolocation from '@react-native-community/geolocation';
 
 const App = () => {
   const [attandance, setAttandance] = React.useState([]);
+  Geolocation.getCurrentPosition(info => console.log(info));
   return (
     <SafeAreaView style={styles.container}>
       <CustomButton onPress={() => pushAttendance(attandance, setAttandance)}>
