@@ -2,19 +2,21 @@ import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import CustomButton from './components/CustomButton';
 import pushAttendance from './functions/dateFunction';
-import Geolocation from '@react-native-community/geolocation';
 
 const App = () => {
   const [attandance, setAttandance] = React.useState([]);
-  Geolocation.getCurrentPosition(info => console.log(info));
   return (
     <SafeAreaView style={styles.container}>
       <CustomButton onPress={() => pushAttendance(attandance, setAttandance)}>
         Attendance
       </CustomButton>
-      <View>
+      <View style={styles.mapContainer}>
         {attandance.map((item, index) => (
-          <Text key={index}>{item}</Text>
+          <View style={styles.recordContainer} key={index}>
+            <Text>Time : {item.time}</Text>
+            <Text>lantitud : {item.location.latitude}</Text>
+            <Text>longitud : {item.location.longitude}</Text>
+          </View>
         ))}
       </View>
     </SafeAreaView>
@@ -25,6 +27,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mapContainer: {
+    alignSelf: 'stretch',
+  },
+  recordContainer: {
+    borderWidth: 2,
+    borderColor: 'black',
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+    alignSelf: 'stretch',
+    backgroundColor: '#65b867',
   },
   recordText: {
     fontSize: 20,
