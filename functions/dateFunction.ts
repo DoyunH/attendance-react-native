@@ -8,12 +8,15 @@ const pushAttendance = async (recordArray: any[], setRecordFunc: any) => {
     date.getMonth() + 1
   }/${date.getFullYear()}/${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-  // android location permission request
+  // android and ios location permission request
   if (Platform.OS === 'android') {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
     console.log(granted);
+  } else if (Platform.OS === 'ios') {
+    const auth = await Geolocation.requestAuthorization('whenInUse');
+    console.log(auth);
   }
 
   // get location information
