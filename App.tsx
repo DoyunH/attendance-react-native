@@ -1,10 +1,15 @@
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import CustomButton from './components/CustomButton';
 import pushAttendance from './functions/dateFunction';
+import {requestPermissions} from './functions/requestPermissions';
 
 const App = () => {
   const [attandance, setAttandance] = React.useState([]);
+  useEffect(() => {
+    requestPermissions();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <CustomButton onPress={() => pushAttendance(attandance, setAttandance)}>
@@ -48,3 +53,6 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+function requestPermission() {
+  throw new Error('Function not implemented.');
+}

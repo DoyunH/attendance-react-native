@@ -1,4 +1,3 @@
-import {PermissionsAndroid, Platform} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 
 const pushAttendance = async (recordArray: any[], setRecordFunc: any) => {
@@ -7,17 +6,6 @@ const pushAttendance = async (recordArray: any[], setRecordFunc: any) => {
   const realtime = `${date.getDate()}/${
     date.getMonth() + 1
   }/${date.getFullYear()}/${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-
-  // android and ios location permission request
-  if (Platform.OS === 'android') {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    );
-    console.log(granted);
-  } else if (Platform.OS === 'ios') {
-    const auth = await Geolocation.requestAuthorization('whenInUse');
-    console.log(auth);
-  }
 
   // get location information
   Geolocation.getCurrentPosition(
